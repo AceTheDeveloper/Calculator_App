@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <title>Calculator</title>
+  </head>
+
+  <style>
+    * {
+      font-family: "Montserrat";
+    }
+
+    input::-webkit-inner-spin-button {
+      display: none;
+    }
+  </style>
+
+  <body class="min-h-screen bg-indigo-950">
+    <div class="flex items-center justify-center">
+      <div class="mt-5">
+        <audio id="missYouAudio" src="audio.mp3"></audio>
+        <!-- main app container -->
+
+        <div class="p-5 bg-indigo-600 mt-12 w-[360px] rounded-md">
+          <div>
+            <input type="text" name="#" id="" class="bg-indigo-950 w-full h-[55px] rounded-sm text-white font-semibold text-center uppercase text-3xl" disabled />
+          </div>
+
+          <!-- number content -->
+
+          <div class="mt-4">
+            <div class="grid grid-cols-4 items-center justify-center gap-4">
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">AC</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl"><i class="bi bi-backspace"></i></button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">%</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">/</button>
+              </div>
+
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">7</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">8</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">9</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">X</button>
+              </div>
+
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">4</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">5</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">6</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">-</button>
+              </div>
+
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">1</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">2</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">3</button>
+              </div>
+              <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px]">
+                <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">+</button>
+              </div>
+            </div>
+            <div class="rounded-md overflow-hidden flex items-center justify-center h-[70px] mt-4">
+              <button type="button" class="h-full w-full bg-indigo-950 text-white font-semibold text-2xl">=</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const display = document.querySelector("input");
+      const buttons = document.querySelectorAll("button");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.textContent.trim();
+
+          switch (value) {
+            case "AC":
+              display.value = "";
+              break;
+
+            case "=":
+              // Show sweet message
+              display.value = "I miss you";
+
+              // Play music
+              const audio = document.getElementById("missYouAudio");
+              audio.play();
+              break;
+
+            case "":
+              // For backspace icon button
+              display.value = display.value.slice(0, -1);
+              break;
+
+            default:
+              display.value += value;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
